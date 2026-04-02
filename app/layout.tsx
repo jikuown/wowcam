@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "WoWcam — Look like you mean it.",
-  description: "Kamera 4K plug-and-play dengan AI enhancement.",
+  title: "cAMOEBA — The last webcam you'll ever need.",
+  description: "Compact 4K AI webcam. Sony sensor. Magnetic mount. Plug & Play.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id">
       <head>

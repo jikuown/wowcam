@@ -1,153 +1,125 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
 };
 const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
 };
-
-// Asymmetric grid cells — different sizes for visual interest
-const GRID_CELLS = [
-  { row: "row-span-2", label: "Hero Shot",     aspect: "aspect-[3/4]",  bg: "#F0F0F0", size: "large"  },
-  { row: "row-span-1", label: "Side View",     aspect: "aspect-square",  bg: "#E8E8E8", size: "small"  },
-  { row: "row-span-1", label: "Detail",        aspect: "aspect-square",  bg: "#EBEBEB", size: "small"  },
-  { row: "row-span-1", label: "In Use",        aspect: "aspect-[4/3]",   bg: "#E5E5E5", size: "medium" },
-];
 
 export default function Hero() {
   return (
-    <section className="min-h-screen pt-14 flex flex-col">
+    <section id="hero" className="min-h-screen flex flex-col pt-14 overflow-hidden bg-white">
 
-      {/* ── Top copy — centered, minimal ── */}
+      {/* ── Top copy ── */}
       <motion.div
-        className="flex-1 flex flex-col items-center justify-center text-center px-6 pt-16 pb-10"
+        className="flex-shrink-0 flex flex-col items-center text-center px-6 pt-16 pb-8"
         variants={container}
         initial="hidden"
         animate="visible"
       >
-        <motion.p variants={item} className="t-caption mb-5">
-          WoWcam · Introducing
+        <motion.p variants={item} className="t-caption mb-5" style={{ color: "#888884" }}>
+          Introducing · cAMOEBA
         </motion.p>
 
-        <motion.h1
-          variants={item}
-          className="t-display text-black max-w-4xl"
-        >
-          Look like you<br />
-          <em className="not-italic" style={{ color: "#FF00BD" }}>mean it.</em>
-        </motion.h1>
+        {/* Extreme weight contrast headline */}
+        <motion.div variants={item} className="max-w-5xl">
+          <h1 style={{ fontSize: "clamp(4rem, 11vw, 10rem)", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 0.92, color: "#0A0A0A" }}>
+            The last webcam
+          </h1>
+          <h1 style={{ fontSize: "clamp(4rem, 11vw, 10rem)", fontWeight: 200, letterSpacing: "-0.04em", lineHeight: 0.92, color: "#C0C0BC" }}>
+            you'll ever need.
+          </h1>
+        </motion.div>
 
-        <motion.p
-          variants={item}
-          className="mt-6 text-[17px] max-w-md leading-relaxed"
-          style={{ color: "#86868B" }}
-        >
+        <motion.p variants={item}
+          className="mt-8 text-[17px] max-w-md leading-relaxed"
+          style={{ fontWeight: 300, color: "#888884" }}>
           Kamera laptop kamu sudah cukup lama mempermalukan kamu di Zoom.
         </motion.p>
 
-        <motion.div variants={item} className="mt-8 flex items-center gap-3">
-          <a
-            href="#cta"
-            className="px-6 py-3 rounded-full text-[15px] font-semibold text-white bg-black hover:opacity-75 transition-opacity"
-          >
-            Buy Now
+        <motion.div variants={item} className="mt-8 flex items-center gap-3 flex-wrap justify-center">
+          <a href="#cta"
+            className="px-7 py-3.5 rounded-full text-[15px] font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-lg"
+            style={{ background: "#FF1493", boxShadow: "0 4px 20px rgba(255,20,147,0.35)" }}>
+            Order Now
           </a>
-          <a
-            href="#comparison"
-            className="px-6 py-3 rounded-full text-[15px] font-semibold text-black border border-[#D2D2D7] hover:border-black transition-colors"
-          >
-            See the Difference
+          <a href="#shapes"
+            className="px-7 py-3.5 rounded-full text-[15px] font-medium border transition-colors hover:border-black"
+            style={{ borderColor: "#E2E2DE", color: "#1A1A18" }}>
+            See the Difference →
           </a>
         </motion.div>
       </motion.div>
 
-      {/* ── Asymmetric product image grid ── */}
+      {/* ── Exploded product image — full bleed ── */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-        className="w-full max-w-6xl mx-auto px-6 pb-0"
+        initial={{ opacity: 0, y: 60, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
+        className="relative flex-1 min-h-[50vw] max-h-[700px] mx-6 md:mx-12 lg:mx-20 mb-0"
       >
-        <div className="grid grid-cols-3 grid-rows-2 gap-3 h-[55vw] max-h-[560px]">
+        <div className="relative w-full h-full rounded-3xl overflow-hidden"
+          style={{ background: "#F7F7F5", minHeight: 320 }}>
+          <Image
+            src="/exploded-view.png"
+            alt="cAMOEBA exploded view showing all internal components"
+            fill
+            className="object-contain object-center p-6 md:p-12"
+            priority
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
 
-          {/* Cell 1 — Large, spans 2 rows, col 1 */}
-          {/* TODO: replace placeholder — hero product shot */}
-          <div
-            className="col-span-1 row-span-2 rounded-3xl overflow-hidden flex items-center justify-center relative"
-            style={{ background: "#F0F0F0" }}
+          {/* Floating labels */}
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.2, duration: 0.5 }}
+            className="absolute top-6 left-6 flex flex-col gap-2"
           >
-            <CameraIcon size={48} />
-            <span className="absolute bottom-4 left-4 text-[11px] font-semibold text-[#86868B]">
-              Front View
-            </span>
-          </div>
-
-          {/* Cell 2 — Medium top-right */}
-          {/* TODO: replace placeholder — side profile */}
-          <div
-            className="col-span-2 row-span-1 rounded-3xl overflow-hidden flex items-center justify-center relative"
-            style={{ background: "#E8E8E8" }}
-          >
-            <div className="flex items-center gap-4">
-              <CameraIcon size={32} />
-              <div>
-                <p className="text-[11px] font-bold tracking-wider text-[#86868B] uppercase">4K · AI Enhanced</p>
-                <p className="text-lg font-bold text-black mt-0.5">WoWcam</p>
+            {["Sony Mirrorless Sensor", "AI Processing Unit", "Magnetic Base"].map((label, i) => (
+              <div key={label}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold bg-white/80 backdrop-blur-sm"
+                style={{ color: "#0A0A0A", border: "1px solid #E2E2DE" }}>
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: i === 0 ? "#FF1493" : "#2C5F47" }} />
+                {label}
               </div>
-            </div>
-            {/* Pink dot accent */}
-            <div
-              className="absolute top-4 right-4 w-3 h-3 rounded-full"
-              style={{ background: "#FF00BD" }}
-            />
-          </div>
+            ))}
+          </motion.div>
 
-          {/* Cell 3 — Small bottom middle */}
-          {/* TODO: replace placeholder — detail/texture shot */}
-          <div
-            className="col-span-1 row-span-1 rounded-3xl overflow-hidden flex flex-col items-center justify-center gap-2 relative"
-            style={{ background: "#EBEBEB" }}
+          {/* 4K badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.4, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-6 right-6 w-14 h-14 rounded-2xl flex items-center justify-center text-[13px] font-black text-white"
+            style={{ background: "#FF1493" }}
           >
-            <span className="text-[11px] font-semibold text-[#86868B] uppercase tracking-wider">f/2.0</span>
-            <p className="text-2xl font-bold text-black">Sony</p>
-            <span className="text-[11px] text-[#86868B]">Sensor</span>
-          </div>
-
-          {/* Cell 4 — Small bottom right */}
-          {/* TODO: replace placeholder — lifestyle / in-use shot */}
-          <div
-            className="col-span-1 row-span-1 rounded-3xl overflow-hidden flex flex-col items-center justify-center gap-2"
-            style={{ background: "#E5E5E5" }}
-          >
-            <span className="text-[11px] font-semibold text-[#86868B] uppercase tracking-wider">Plug & Play</span>
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center"
-              style={{ background: "#FF00BD" }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M4 8h8M9 5l3 3-3 3" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-          </div>
-
+            4K
+          </motion.div>
         </div>
       </motion.div>
-    </section>
-  );
-}
 
-function CameraIcon({ size = 40 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" style={{ color: "#C0C0C0" }}>
-      <rect x="4" y="10" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="1.5"/>
-      <circle cx="20" cy="22" r="7" stroke="currentColor" strokeWidth="1.5"/>
-      <circle cx="20" cy="22" r="3" stroke="currentColor" strokeWidth="1.5"/>
-      <rect x="15" y="7" width="10" height="4" rx="2" stroke="currentColor" strokeWidth="1.5"/>
-    </svg>
+      {/* ── Bottom stat strip ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="flex-shrink-0 flex items-center justify-center gap-8 md:gap-16 py-7 px-6 border-t"
+        style={{ borderColor: "#E2E2DE" }}
+      >
+        {[["4K", "Resolution"], ["f/2.0", "Aperture"], ["72g", "Weight"], ["0s", "Setup Time"]].map(([val, label]) => (
+          <div key={label} className="text-center">
+            <p className="text-[22px] md:text-[28px] font-black tracking-tight" style={{ color: "#0A0A0A" }}>{val}</p>
+            <p className="text-[11px] font-medium mt-0.5" style={{ color: "#888884" }}>{label}</p>
+          </div>
+        ))}
+      </motion.div>
+    </section>
   );
 }

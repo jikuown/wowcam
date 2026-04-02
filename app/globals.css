@@ -6,13 +6,14 @@
 
 /* ─── Design Tokens ─────────────────────────────────────── */
 :root {
-  --white:   #FFFFFF;
-  --black:   #000000;
-  --pink:    #FF00BD;
-  --subtle:  #F5F5F7;
-  --mid:     #86868B;
-  --border:  #D2D2D7;
-  --text:    #1D1D1F;
+  --white:    #FFFFFF;
+  --off:      #F7F7F5;
+  --black:    #0A0A0A;
+  --emerald:  #2C5F47;
+  --pink:     #FF1493;
+  --mid:      #888884;
+  --border:   #E2E2DE;
+  --text:     #1A1A18;
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
@@ -21,73 +22,106 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #fff;
+    cursor: none;
   }
 
   body {
-    background: #ffffff;
+    background: #FFFFFF;
     color: var(--text);
     font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.6;
     overflow-x: hidden;
+    cursor: none;
   }
 
   * { box-sizing: border-box; }
+  a, button { cursor: none; }
 
-  ::selection { background: #000; color: #fff; }
-
-  :focus-visible {
-    outline: 2px solid var(--pink);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
+  ::selection { background: #FF1493; color: #fff; }
 }
 
-/* ─── Utilities ──────────────────────────────────────────── */
+/* ─── Typography scale ───────────────────────────────────── */
 @layer utilities {
+  .t-display {
+    font-size: clamp(3.8rem, 10vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  .t-headline {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+  .t-title {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .t-body {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+  .t-caption {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* Extreme weight contrast pairs */
+  .t-hero-light {
+    font-size: clamp(3.8rem, 10vw, 9rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--mid);
+  }
+
   .scrollbar-hidden {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hidden::-webkit-scrollbar { display: none; }
 
-  .t-display {
-    font-size: clamp(3.5rem, 9vw, 8rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.0;
+  /* Bento card base */
+  .bento {
+    background: var(--off);
+    border-radius: 24px;
+    overflow: hidden;
   }
-  .t-headline {
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-  }
-  .t-title {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 600;
-    letter-spacing: -0.018em;
-    line-height: 1.15;
-  }
-  .t-body {
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 1.65;
-    color: var(--mid);
-  }
-  .t-caption {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--mid);
-  }
-  .text-pink { color: var(--pink); }
-  .bg-pink { background-color: var(--pink); }
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────── */
+#custom-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--black);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  will-change: transform;
+}
+
+#custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: var(--pink);
+  mix-blend-mode: multiply;
+}
+
+#custom-cursor.on-dark {
+  background: white;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }

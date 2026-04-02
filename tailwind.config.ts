@@ -35,3 +35,4 @@ const config: Config = {
 };
 
 export default config;
+// vars referenced in CSS

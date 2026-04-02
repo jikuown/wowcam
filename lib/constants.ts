@@ -1,13 +1,16 @@
 // ============================================================
-// WoWcam — All copy, data constants, and content strings
+// cAMOEBA — All copy, data constants, and content strings
 // ============================================================
 
 export const COPY = {
+  brand: "cAMOEBA",
   hero: {
-    headline: "Look like you mean it.",
-    sub: "Kamera laptop kamu sudah cukup lama mempermalukan kamu di Zoom.",
-    cta_primary: "Buy Now",
-    cta_secondary: "See the Difference",
+    eyebrow: "Introducing",
+    headline: "cAMOEBA",
+    sub: "The last webcam you'll ever need.",
+    body: "Kamera laptop kamu sudah cukup lama mempermalukan kamu di Zoom.",
+    cta_primary: "Order Now",
+    cta_secondary: "See How It Works",
   },
   overview: [
     { title: "Compact", desc: "Muat di saku, kuat di meja kerja." },
@@ -17,7 +20,7 @@ export const COPY = {
   ],
   cta: {
     headline: "Upgrade your setup today.",
-    button: "Buy Now",
+    button: "Order Now",
   },
 };
 
@@ -25,23 +28,23 @@ export const FEATURES = [
   {
     tag: "Crystal Clear",
     title: "Image Quality That Demands Attention",
-    body:
-      "Sensor 4K Sony STARVIS dengan lensa glass 6-element. Setiap frame tampil tajam, natural, dan detail—bahkan di ruangan yang tidak ideal.",
+    body: "Sensor 4K Sony STARVIS dengan lensa glass 6-element. Setiap frame tampil tajam, natural, dan detail—bahkan di ruangan yang tidak ideal.",
     detail: "4K @ 30fps · HDR10 · 85° FOV",
+    image: "/macro-magnetic.png",
   },
   {
     tag: "See in the Dark",
     title: "Low Light Performance",
-    body:
-      "f/2.0 aperture + AI noise reduction. Cahaya redup bukan alasan lagi. WoWcam menjaga kualitas gambar tetap jernih saat tim kamu nggak bisa lihat mukamu.",
+    body: "f/2.0 aperture + AI noise reduction. Cahaya redup bukan alasan lagi.",
     detail: "≥ 0.1 lux · Night Mode AI",
+    image: "/clip-lifestyle.png",
   },
   {
     tag: "Just Works",
     title: "Universal Compatibility",
-    body:
-      "USB-C plug-and-play dengan dukungan Windows, macOS, Linux, dan ChromeOS. Zoom, Meet, Teams, OBS—semuanya langsung jalan tanpa install apapun.",
+    body: "USB-C plug-and-play. Zoom, Meet, Teams, OBS—semuanya langsung jalan tanpa install apapun.",
     detail: "USB-C · UVC · Zero Driver",
+    image: "/hero-lifestyle.png",
   },
 ];
 
@@ -49,19 +52,19 @@ export const USE_CASES = [
   {
     persona: "Remote Worker",
     title: "Tampil profesional dari rumah.",
-    body: "Background blur AI, framing otomatis, pencahayaan yang selalu on-point. Rapat jam 9 pagi di kamar tidur? Gak ada yang tau.",
+    body: "Background blur AI, framing otomatis, pencahayaan yang selalu on-point.",
     badge: "Work From Home",
   },
   {
     persona: "Freelancer",
     title: "Client pertama kali lihat, langsung percaya.",
-    body: "First impression di video call itu nyata. WoWcam bikin kamu keliatan like you've got it together—bahkan saat kamu masih dalam piyama.",
+    body: "First impression di video call itu nyata. cAMOEBA bikin kamu keliatan like you've got it together.",
     badge: "Creator & Freelance",
   },
   {
     persona: "Hybrid Professional",
     title: "Satu kamera, dua dunia.",
-    body: "Dari kantor atau dari kafe—WoWcam pas di mana pun kamu kerja. Compact, travel-ready, no-fuss setup.",
+    body: "Dari kantor atau dari kafe—cAMOEBA pas di mana pun kamu kerja. Compact, travel-ready, no-fuss setup.",
     badge: "Hybrid Work",
   },
 ];
@@ -75,8 +78,8 @@ export const SPECS = [
   { label: "OS Support", value: "Windows 10+, macOS 11+, Linux, ChromeOS" },
   { label: "AI Features", value: "Auto framing, low-light enhance, background blur" },
   { label: "Microphone", value: "Dual stereo, AI noise cancellation" },
-  { label: "Dimensions", value: "68 × 32 × 28 mm" },
-  { label: "Weight", value: "98g" },
+  { label: "Dimensions", value: "68 × 68 × 18 mm" },
+  { label: "Weight", value: "72g" },
   { label: "Warranty", value: "2 tahun garansi resmi" },
 ];
 
@@ -84,35 +87,32 @@ export const TESTIMONIALS = [
   {
     name: "Raka Pratama",
     title: "Product Designer · Jakarta",
-    quote:
-      "Client gue di Singapore bilang 'your camera is so clear, are you in a studio?' — Gue jawab ya padahal lagi di kamar kosan.",
+    quote: "Client gue di Singapore bilang 'your camera is so clear, are you in a studio?' — Gue jawab ya padahal lagi di kamar kosan.",
     rating: 5,
   },
   {
     name: "Nadia Setyawati",
     title: "Freelance Marketer · Bandung",
-    quote:
-      "Serius ini game changer. Gue pake WoWcam buat semua client call dan close rate naik. Entah kebetulan atau emang ngaruh, gue tetep pake.",
+    quote: "Serius ini game changer. Gue pake cAMOEBA buat semua client call dan close rate naik.",
     rating: 5,
   },
   {
     name: "Bimo Wicaksono",
     title: "Engineering Lead · Remote",
-    quote:
-      "Plug-and-play beneran. Nyolok, langsung detected. Low light di ruang server tetap keliatan. Ini yang gue cari dari dulu.",
+    quote: "Plug-and-play beneran. Nyolok, langsung detected. Low light di ruang server tetap keliatan.",
     rating: 5,
   },
 ];
 
 export const NAV_LINKS = [
-  { label: "Overview", href: "#overview" },
+  { label: "Product", href: "#shapes" },
   { label: "Features", href: "#features" },
   { label: "Specs", href: "#specs" },
   { label: "Reviews", href: "#testimonials" },
 ];
 
 export const FOOTER_LINKS = [
-  { label: "Overview", href: "#overview" },
+  { label: "Overview", href: "#hero" },
   { label: "Features", href: "#features" },
   { label: "Gallery", href: "#gallery" },
   { label: "Specs", href: "#specs" },
@@ -126,4 +126,43 @@ export const SOCIAL_LINKS = [
   { label: "Twitter / X", href: "#", icon: "twitter" },
   { label: "YouTube", href: "#", icon: "youtube" },
   { label: "TikTok", href: "#", icon: "tiktok" },
+];
+
+export const SHAPES = [
+  { name: "Square", desc: "The classic. Precise, balanced, universal.", tag: "Most Popular" },
+  { name: "Triangle", desc: "Bold geometry. Directional. Unmistakable.", tag: "Bestseller" },
+  { name: "Star", desc: "Stand out. Literally.", tag: "Limited" },
+];
+
+export const BENTO_FEATURES = [
+  {
+    tag: "Magnetic Mount",
+    title: "Sticks where you need it.",
+    body: "Precision magnetic attachment. No screws, no wobble.",
+    size: "large",
+  },
+  {
+    tag: "Sony Sensor",
+    title: "4K · f/2.0",
+    body: "Mirrorless-grade optics.",
+    size: "small",
+  },
+  {
+    tag: "Clip Mount",
+    title: "Works on anything.",
+    body: "Monitor, laptop, bag strap.",
+    size: "small",
+  },
+  {
+    tag: "AI Framing",
+    title: "Always centered.",
+    body: "Auto-tracks your face. Zero effort.",
+    size: "medium",
+  },
+  {
+    tag: "Plug & Play",
+    title: "Zero setup.",
+    body: "USB-C. No drivers. Just works.",
+    size: "medium",
+  },
 ];

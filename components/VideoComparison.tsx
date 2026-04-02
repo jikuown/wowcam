@@ -67,7 +67,7 @@ export default function VideoComparison() {
             <div className="absolute inset-0 flex items-center justify-center" style={{ background: "#2A2A2A" }}>
               <div className="text-center">
                 <p className="text-[28px] font-bold text-white opacity-20">480p</p>
-                <p className="text-[12px] mt-1 font-medium tracking-widest uppercase" style={{ color: "#666" }}>Webcam Laptop</p>
+                <p className="text-[12px] mt-1 font-medium tracking-widest uppercase" style={{ color: "#666" }}>Built-in Webcam</p>
               </div>
             </div>
 
@@ -79,7 +79,7 @@ export default function VideoComparison() {
             >
               <div className="text-center">
                 <p className="text-[28px] font-bold text-black" style={{ color: "#FF00BD" }}>4K</p>
-                <p className="text-[12px] mt-1 font-medium tracking-widest uppercase text-black">WoWcam</p>
+                <p className="text-[12px] mt-1 font-medium tracking-widest uppercase text-black">cAMOEBA</p>
               </div>
             </div>
 
@@ -101,10 +101,10 @@ export default function VideoComparison() {
 
             {/* Labels */}
             <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full text-[11px] font-semibold bg-black/60 text-white/60 backdrop-blur-sm">
-              Webcam Laptop
+              Built-in Webcam
             </div>
             <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full text-[11px] font-semibold bg-black/60 backdrop-blur-sm" style={{ color: "#FF00BD" }}>
-              WoWcam
+              cAMOEBA
             </div>
           </div>
 
