@@ -1,4 +1,3 @@
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -15,7 +14,6 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <main className="bg-white text-black">
         <Navbar />
         <Hero />
