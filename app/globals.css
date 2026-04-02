@@ -22,7 +22,6 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: none;
   }
 
   body {
@@ -30,11 +29,8 @@
     color: var(--text);
     font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     overflow-x: hidden;
-    cursor: none;
   }
 
-  * { box-sizing: border-box; }
-  a, button { cursor: none; }
 
   ::selection { background: #FF1493; color: #fff; }
 }
@@ -94,6 +90,31 @@
     border-radius: 24px;
     overflow: hidden;
   }
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────── */
+#custom-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--black);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  will-change: transform;
+}
+
+#custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: var(--pink);
+  mix-blend-mode: multiply;
+}
+
+#custom-cursor.on-dark {
+  background: white;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────── */
