@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+:root {
+  --white:    #FFFFFF;
+  --off:      #F7F7F5;
+  --black:    #0A0A0A;
+  --emerald:  #2C5F47;
+  --pink:     #FF1493;
+  --mid:      #888884;
+  --border:   #E2E2DE;
+  --text:     #1A1A18;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: #FFFFFF;
+    color: var(--text);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+
+  ::selection { background: #FF1493; color: #fff; }
+}
+
+/* ─── Typography scale ───────────────────────────────────── */
+@layer utilities {
+  .t-display {
+    font-size: clamp(3.8rem, 10vw, 9rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+  .t-headline {
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+  .t-title {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .t-body {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--mid);
+  }
+  .t-caption {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* Extreme weight contrast pairs */
+  .t-hero-light {
+    font-size: clamp(3.8rem, 10vw, 9rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--mid);
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar { display: none; }
+
+  /* Bento card base */
+  .bento {
+    background: var(--off);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+}
+
+/* ─── Custom Cursor ──────────────────────────────────────── */
+#custom-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--black);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  will-change: transform;
+}
+
+#custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: var(--pink);
+  mix-blend-mode: multiply;
+}
+
+#custom-cursor.on-dark {
+  background: white;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
