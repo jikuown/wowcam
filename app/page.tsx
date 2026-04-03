@@ -1,5 +1,6 @@
+import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import PinnedHero from "@/components/PinnedHero";
 import ScrollReveal from "@/components/ScrollReveal";
 import ShapeVariants from "@/components/ShapeVariants";
 import BentoFeatures from "@/components/BentoFeatures";
@@ -13,9 +14,10 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <CustomCursor />
       <main className="bg-white text-black">
         <Navbar />
-        <Hero />
+        <PinnedHero />
         <ScrollReveal />
         <ShapeVariants />
         <BentoFeatures />
