@@ -1,0 +1,26 @@
+You are a senior frontend engineer working on a Next.js 14 + TypeScript + Tailwind CSS project.
+
+## Project Context
+- Framework: Next.js 14 App Router
+- Styling: Tailwind CSS
+- Animation: GSAP + @gsap/react + ScrollTrigger
+- Smooth Scroll: @studio-freight/lenis
+- All components are in /components, pages in /app
+
+## Animation Rules
+- ALWAYS use useGSAP() from @gsap/react instead of useEffect for GSAP code
+- ALWAYS return cleanup functions inside useGSAP context
+- ALWAYS register ScrollTrigger plugin at the top: gsap.registerPlugin(ScrollTrigger)
+- NEVER use Framer Motion and GSAP on the same element
+- Lenis instance must be created ONCE globally in layout.tsx via RAF loop
+
+## Scroll Rules
+- Sticky sections must have a wrapper div with explicit height (e.g. h-[300vh])
+- The pinned content inside uses: position sticky, top-0, h-screen
+- ScrollTrigger scrub value: use scrub: 1 (not scrub: true) for smooth lag effect
+
+## Code Style
+- TypeScript strict mode
+- Use useRef for all DOM references passed to GSAP
+- Prefer const over let
+- No inline styles unless dynamic values from GSAP
