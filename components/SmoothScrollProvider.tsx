@@ -15,7 +15,12 @@ export default function SmoothScrollProvider({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Init Lenis
+    // Fix: always start at top on refresh
+    if (typeof window !== "undefined") {
+      history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -24,19 +29,15 @@ export default function SmoothScrollProvider({
 
     lenisRef.current = lenis;
 
-    // Connect Lenis to GSAP ticker
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    // Prevent GSAP lag smoothing conflict
+    // Connect to GSAP ticker
+    const tickerFn = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerFn);
     gsap.ticker.lagSmoothing(0);
 
-    // Tell ScrollTrigger to use Lenis scroll position
     lenis.on("scroll", ScrollTrigger.update);
 
     return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      gsap.ticker.remove(tickerFn);
       lenis.destroy();
     };
   }, []);
