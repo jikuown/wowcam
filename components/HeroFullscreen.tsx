@@ -9,41 +9,31 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HeroFullscreen() {
-  const wrapperRef  = useRef<HTMLDivElement>(null);  // outer scroll room
-  const stickyRef   = useRef<HTMLDivElement>(null);  // sticky viewport
-  const imageBoxRef = useRef<HTMLDivElement>(null);  // the image card
-  const copyRef     = useRef<HTMLDivElement>(null);  // bottom copy
-  const overlayRef  = useRef<HTMLDivElement>(null);  // dark overlay on image
+  const wrapperRef  = useRef<HTMLDivElement>(null);
+  const imageBoxRef = useRef<HTMLDivElement>(null);
+  const copyRef     = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (!wrapperRef.current) return;
 
-    // ── Timeline scrubbed to outer scroll room ──────────
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapperRef.current,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.4,
+        scrub: 1,
       },
     });
 
-    // Phase 1 (0→0.6): image pulls in — borderRadius 0→28px, slight scale down
+    // clipPath: full → inset rectangle with rounded corners
     tl.to(imageBoxRef.current, {
-      borderRadius: "28px",
-      scale: 0.88,
+      clipPath: "inset(6% 5% 6% 5% round 24px)",
       ease: "none",
     }, 0);
 
-    // Overlay darkens slightly as it pulls in (feels more dramatic)
-    tl.to(overlayRef.current, {
-      opacity: 0,
-      ease: "none",
-    }, 0);
-
-    // Copy fades up and out
+    // Copy fades + slides up as card shrinks
     tl.to(copyRef.current, {
-      y: -48,
+      y: -40,
       opacity: 0,
       ease: "none",
     }, 0);
@@ -51,23 +41,22 @@ export default function HeroFullscreen() {
   }, { scope: wrapperRef });
 
   return (
-    // Outer — scroll room (200vh = gives enough travel for the animation)
-    <div ref={wrapperRef} className="relative" style={{ height: "200vh" }}>
+    // 150vh = enough scroll room without feeling sluggish
+    <div ref={wrapperRef} className="relative" style={{ height: "150vh" }}>
 
-      {/* Sticky viewport */}
+      {/* Sticky — 100dvh accounts for mobile browser chrome */}
       <div
-        ref={stickyRef}
-        className="sticky top-0 h-screen overflow-hidden"
-        style={{ background: "#F7F7F5" }}
+        className="sticky top-0 overflow-hidden"
+        style={{ height: "100dvh", background: "#F0EFEB" }}
       >
 
-        {/* ── Image card — starts full-screen, animates to card ── */}
+        {/* Image — starts full-bleed, clipPath shrinks it into a card */}
         <div
           ref={imageBoxRef}
-          className="absolute inset-0 overflow-hidden"
+          className="absolute inset-0"
           style={{
-            borderRadius: "0px",
-            willChange: "transform, border-radius",
+            clipPath: "inset(0% 0% 0% 0% round 0px)",
+            willChange: "clip-path",
           }}
         >
           <Image
@@ -79,37 +68,29 @@ export default function HeroFullscreen() {
             sizes="100vw"
           />
 
-          {/* Dark gradient overlay — bottom for copy legibility */}
+          {/* Bottom gradient for text legibility */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72) 100%)",
-            }}
-          />
-
-          {/* Animated overlay (fades out as card shrinks) */}
-          <div
-            ref={overlayRef}
-            className="absolute inset-0"
-            style={{
-              background: "rgba(0,0,0,0.18)",
-              willChange: "opacity",
+                "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.75) 100%)",
             }}
           />
         </div>
 
-        {/* ── Bottom copy — tagline + CTA ──────────────── */}
+        {/* Bottom copy — tagline + CTA */}
         <div
           ref={copyRef}
-          className="absolute bottom-0 inset-x-0 px-5 md:px-10 pb-10 md:pb-14"
-          style={{ willChange: "transform, opacity" }}
+          className="absolute bottom-0 inset-x-0 px-5 md:px-10"
+          style={{
+            paddingBottom: "max(env(safe-area-inset-bottom, 0px) + 32px, 40px)",
+            willChange: "transform, opacity",
+          }}
         >
-          {/* Jargon / tagline */}
           <p
-            className="text-white mb-3"
+            className="text-white"
             style={{
-              fontSize: "clamp(2rem, 7vw, 5rem)",
+              fontSize: "clamp(2.2rem, 8vw, 5rem)",
               fontWeight: 900,
               letterSpacing: "-0.04em",
               lineHeight: 0.95,
@@ -118,9 +99,9 @@ export default function HeroFullscreen() {
             The last webcam
           </p>
           <p
-            className="mb-7"
+            className="mb-6"
             style={{
-              fontSize: "clamp(2rem, 7vw, 5rem)",
+              fontSize: "clamp(2.2rem, 8vw, 5rem)",
               fontWeight: 200,
               letterSpacing: "-0.04em",
               lineHeight: 0.95,
@@ -130,39 +111,35 @@ export default function HeroFullscreen() {
             you'll ever need.
           </p>
 
-          {/* CTA row */}
           <div className="flex items-center gap-3 flex-wrap">
             <a
               href="#cta"
-              className="inline-flex items-center px-6 py-3 rounded-full text-[14px] font-bold text-white transition-all active:scale-95"
+              className="inline-flex items-center px-6 py-3.5 rounded-full text-[14px] font-bold text-white active:scale-95 transition-transform"
               style={{
                 background: "#FF1493",
-                boxShadow: "0 4px 24px rgba(255,20,147,0.45)",
+                boxShadow: "0 4px 24px rgba(255,20,147,0.5)",
               }}
             >
               Order Now
             </a>
             <a
               href="#shapes"
-              className="inline-flex items-center px-6 py-3 rounded-full text-[14px] font-medium text-white/70 border border-white/20 hover:text-white hover:border-white/50 transition-colors"
+              className="inline-flex items-center px-6 py-3.5 rounded-full text-[14px] font-medium text-white/70 border border-white/25 active:scale-95 transition-transform"
             >
               See the Difference →
             </a>
           </div>
 
-          {/* Scroll hint */}
           <p
-            className="mt-8 text-[11px] font-semibold tracking-[0.18em] uppercase"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            className="mt-5 text-[10px] font-bold tracking-[0.2em] uppercase"
+            style={{ color: "rgba(255,255,255,0.28)" }}
           >
             Scroll to explore ↓
           </p>
         </div>
 
-        {/* ── Top-right badge ─────────────────────────── */}
-        <div
-          className="absolute top-20 right-5 md:right-10 flex flex-col items-end gap-2"
-        >
+        {/* Top-right badges */}
+        <div className="absolute top-20 right-5 flex flex-col items-end gap-2">
           <div
             className="w-11 h-11 rounded-xl flex items-center justify-center text-[12px] font-black text-white"
             style={{ background: "#FF1493" }}
@@ -172,8 +149,8 @@ export default function HeroFullscreen() {
           <div
             className="px-2.5 py-1 rounded-full text-[10px] font-bold"
             style={{
-              background: "rgba(255,255,255,0.12)",
-              color: "rgba(255,255,255,0.7)",
+              background: "rgba(0,0,0,0.35)",
+              color: "rgba(255,255,255,0.75)",
               backdropFilter: "blur(8px)",
               border: "1px solid rgba(255,255,255,0.15)",
             }}
@@ -181,7 +158,6 @@ export default function HeroFullscreen() {
             Sony Sensor
           </div>
         </div>
-
       </div>
     </div>
   );
